@@ -1,0 +1,76 @@
+
+## Python Script Documentation: Domain Name to IP Address Resolver
+
+### Overview
+This Python script prompts the user to input a domain name, resolves the domain name to its corresponding IP address, and writes the result to a file named `ip.txt`.
+
+### Dependencies
+- Python 3.x
+- `socket` module (standard library)
+
+### Script Breakdown
+
+1. **Importing the socket module**:
+   ```python
+   import socket
+   ```
+   The `socket` module provides access to the BSD socket interface, enabling network communication.
+
+2. **Function Definition: `resolve_domain_to_ip`**:
+   ```python
+   def resolve_domain_to_ip(domain_name):
+       try:
+           ip_address = socket.gethostbyname(domain_name)
+           return ip_address
+       except socket.gaierror:
+           return "Invalid domain name or unable to resolve."
+   ```
+   - **Purpose**: This function takes a domain name as input and returns its IP address.
+   - **Error Handling**: If the domain name cannot be resolved, it catches the `socket.gaierror` exception and returns an error message.
+
+3. **User Input**:
+   ```python
+   domain_name = input("Enter the domain name (e.g., example.com): ")
+   ```
+   The script prompts the user to enter a domain name.
+
+4. **Resolve Domain Name**:
+   ```python
+   ip_address = resolve_domain_to_ip(domain_name)
+   ```
+   The script calls the `resolve_domain_to_ip` function to get the IP address of the entered domain name.
+
+5. **Writing Result to File**:
+   ```python
+   with open("ip.txt", "a") as file:
+       file.write(f"{domain_name} - {ip_address}\n")
+   ```
+   - The script opens (or creates) a file named `ip.txt` in append mode.
+   - It writes the domain name and its corresponding IP address to the file.
+
+6. **Printing the Result**:
+   ```python
+   print(f"The IP address for {domain_name} is {ip_address} and has been written to ip.txt")
+   ```
+   The script prints a message to the console indicating the resolved IP address and confirming that the result has been written to the file.
+
+### Usage
+1. Run the script.
+2. When prompted, enter a domain name (e.g., `example.com`).
+3. The script will resolve the domain name to its IP address and append the result to `ip.txt`.
+4. Check the `ip.txt` file to see the logged domain name and IP address pairs.
+
+### Example
+```shell
+$ python resolve_ip.py
+Enter the domain name (e.g., example.com): example.com
+The IP address for example.com is 93.184.216.34 and has been written to ip.txt
+```
+
+The `ip.txt` file will contain:
+```
+example.com - 93.184.216.34
+```
+!!!VOLUNTEERS ARE HIGHLY WELCOME TO HELP MAKE THIS TOOL BETTER
+
+CONTACT ME: mistriga196@proton.me
